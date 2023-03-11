@@ -1,4 +1,6 @@
 const Sequelize = require('sequelize');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 require('dotenv').config();
 
 let sequelize;
@@ -13,9 +15,22 @@ if (process.env.JAWSDB_URL) {
     {
       host: 'localhost',
       dialect: 'mysql',
-      port: 3301,
+      port: 3306,
     }
   );
 }
 
-module.exports = sequelize;
+const expressSessConfig = {
+  secret: process.env.SESSION_SECRET,
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
+module.exports = {
+  sequelize,
+  expressSessConfig,
+};
