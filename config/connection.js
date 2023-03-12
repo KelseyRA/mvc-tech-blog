@@ -20,7 +20,7 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
-const expressSessConfig = {
+const expressSessionConfig = {
   secret: process.env.SESSION_SECRET,
   cookie: {},
   resave: false,
@@ -32,5 +32,5 @@ const expressSessConfig = {
 
 module.exports = {
   sequelize,
-  expressSessConfig,
+  expressSessionConfig,
 };

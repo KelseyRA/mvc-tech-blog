@@ -10,7 +10,7 @@ const app = express();
 const hbs = exphbs.create();
 const PORT = process.env.PORT || 3001;
 
-app.use(session(config.expressSessConfig));
+app.use(session(config.expressSessionConfig));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', hbs.engine);

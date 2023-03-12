@@ -1,0 +1,14 @@
+<div class = "container">
+    <h1>Welcome to the Tech Blog</h1>
+    {{#if posts}}
+        <ul>
+            {{#each posts as |post|}}
+                <li>
+                    {{post-info post}}
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No posts yet.</p>
+    {{/if}}
+</div>

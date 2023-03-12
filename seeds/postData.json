@@ -1,0 +1,18 @@
+[
+    {
+      "post_title": "JavaScript Ideas",
+      "post_text": "Look at this post"
+    },
+    {
+        "post_title": "CSS Examples",
+        "post_text": "See all these examples"
+    },
+    {
+        "post_title": "HTML Shortcuts",
+        "post_text": "Look at all these shortcuts"
+    },
+    {
+        "post_title": "MySQL Info",
+        "post_text": "I love data and tables"
+    }
+  ]
