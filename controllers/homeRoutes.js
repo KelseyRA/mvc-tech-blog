@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
             'id',
             'comment_text',
             'user_id',
-            'post-id',
+            'post_id',
             'created_at',
           ],
           include: {
@@ -29,6 +29,7 @@ router.get('/', async (req, res) => {
       ],
     });
     const posts = postData.map((post) => post.get({ plain: true }));
+    console.log(posts);
     res.render('homepage', {
       posts,
       loggedIn: req.session.loggedIn,
