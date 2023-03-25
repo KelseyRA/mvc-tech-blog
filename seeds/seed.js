@@ -6,18 +6,10 @@ const commentData = require('./commentData.json');
 
 const { sequelize } = require('../config/connection');
 
-// const seedDatabase = async () => {
-//   await sequelize.sync({ force: true });
-//   await userData();
-//   await postData();
-//   await commentData();
-//   process.exit(0);
-// };
-
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  const users = await User.afterBulkCreate(userData, {
+  const users = await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
   });
@@ -31,7 +23,7 @@ const seedDatabase = async () => {
     for (const comment of commentData) {
       await Comment.create({
         ...comment,
-        user_id: users[Math.floor(Math.random() * userData.length)].id,
+        user_id: users[Math.floor(Math.random() * users.length)].id,
       });
     }
     process.exit(0);

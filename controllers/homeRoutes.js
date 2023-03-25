@@ -61,24 +61,6 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-router.get('/dashboard', withAuth, async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Post }],
-    });
-
-    const user = userData.get({ plain: true });
-
-    res.render('dashboard', {
-      ...user,
-      loggedIn: true,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 router.post('/signup', async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -97,7 +79,7 @@ router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({
       where: {
-        email: req.body.email,
+        username: req.body.username,
       },
     });
     if (!userData) {
@@ -124,11 +106,36 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('logout', (req, res) => {
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
+  }
+  res.render('login');
+});
+
+router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(400).end();
     });
+  }
+});
+
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Post }],
+    });
+    const user = userData.get({ plain: true });
+
+    res.render('dashboard', {
+      ...user,
+      loggedIn: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
