@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "heroku-postbuild": "node seeds/seed.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "sequelize": "^6.29.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "sequelize-cli": "^6.6.0"
   }
 }

@@ -1,46 +1,46 @@
-const newFormHandler = async (event) => {
-  event.preventDefault();
+// const deletePost = document.querySelector('#delete-button');
 
-  const title = document.querySelector('#post-title').value.trim();
-  const text = document.querySelector('#post-text').value.trim();
+// const newFormHandler = async (event) => {
+//   event.preventDefault();
 
-  if (title && text) {
-    const response = await fetch('/api/post', {
-      method: 'POST',
-      body: JSON.stringify({ title, text }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+//   const post_title = document.querySelector('#post-title').value.trim();
+//   const post_text = document.querySelector('#post-text').value.trim();
 
-    if (response.ok) {
-      document.location.replace('dashboard');
-    } else {
-      alert('Failed to create post');
-    }
-  }
-};
+//   if (post_title && post_text) {
+//     const response = await fetch('/api/post', {
+//       method: 'POST',
+//       body: JSON.stringify({ title, text }),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
 
-const deleteButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+//     if (response.ok) {
+//       document.location.replace('dashboard');
+//     } else {
+//       alert('Failed to create post');
+//     }
+//   }
+// };
 
-    const response = await fetch(`/api/post/${id}`, {
-      method: 'DELETE',
-    });
+// const deleteButtonHandler = async (event) => {
+//   if (event.target.hasAttribute('data-id')) {
+//     const id = event.target.getAttribute('data-id');
 
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to delete post');
-    }
-  }
-};
+//     const response = await fetch(`/api/post/${id}`, {
+//       method: 'DELETE',
+//     });
 
-document
-  .querySelector('.new-post-form')
-  .addEventListener('submit', newFormHandler);
+//     if (response.ok) {
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert('Failed to delete post');
+//     }
+//   }
+// };
 
-document
-  .querySelector('.post-list')
-  .addEventListener('click', deleteButtonHandler);
+// document
+//   .querySelector('.new-post-form')
+//   .addEventListener('submit', newFormHandler);
+
+// deletePost.addEventListener('click', deleteButtonHandler);

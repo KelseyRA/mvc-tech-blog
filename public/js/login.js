@@ -20,7 +20,7 @@ const loginFormHandler = async (event) => {
     } else {
       alert(response.statusText);
     }
-    loginForm.reset();
+    // loginForm.reset();
   }
 };
 
