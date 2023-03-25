@@ -21,7 +21,7 @@ if (process.env.JAWSDB_URL) {
 }
 
 const expressSessionConfig = {
-  secret: process.env.SESSION_SECRET,
+  secret: 'N1rIN%$-l%KhI@a',
   cookie: {},
   resave: false,
   saveUninitialized: true,
